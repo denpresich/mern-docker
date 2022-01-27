@@ -1,0 +1,15 @@
+.add-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.add-form > input {
+  padding: 0.5em 1em;
+}
+
+.add-form > input[type="text"] {
+  flex: 1;
+  border: 1px solid #e7e7e7;
+}

@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    build: './nginx'
+    ports:
+      - 443:443
+    depends_on:
+      - client
+      - server
+  client:
+    container_name: client
+    build:
+      context: './packages/client'
+      dockerfile: Dockerfile
+      target: prod
+    depends_on:
+      - server
+  server:
+    container_name: server
+    build:
+      context: './packages/server'
+      dockerfile: Dockerfile
+      target: prod
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongo:5.0
+    env_file:
+      - .env
+    ports:
+      - 27017:27017
+  mongodb-client:
+    container_name: mongodb-client
+    image: mongo-express:0.54.0
+    env_file:
+      - .env
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb

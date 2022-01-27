@@ -1,0 +1,10 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 32em;
+  margin: 0 auto;
+  padding: 1em;
+  height: 100%;
+  overflow: hidden;
+}
